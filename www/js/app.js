@@ -188,7 +188,7 @@ if(sessionStorage.getItem('loggedin_status')){
 
 
 
-app.controller('RedditCtrl',function($http,$location,$scope){
+app.controller('RedditCtrl',function($http,$location,$scope, $ionicModal){
 
  // $scope.input = {};
   $scope.stories = [];
@@ -197,16 +197,23 @@ app.controller('RedditCtrl',function($http,$location,$scope){
     if($scope.stories.length > 0){
       $scope.page += 1 ;
     }
-    $http.get('http://localhost/pagination/jsondata.php/?page='+$scope.page)
+    $http.get('http://localhost/pagination/jsonformat.php/?page='+$scope.page)
     //$http.get("https://www.reddit.com/r/Android/new/.json")
       .success(function(response){
-        angular.forEach(response.data.children,function(child){
-          $scope.stories.push(child.data);
+        angular.forEach(response,function(child){
+          $scope.stories.push(child);
           console.log($scope.stories);
         });
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });
   }
+
+$ionicModal.fromTemplateUrl('snippets/index_modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
 
 });
 

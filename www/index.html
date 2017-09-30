@@ -117,8 +117,8 @@
 
         <ion-content>
        
-            <div class="list" ng-controller="inModalCtrl">
-   
+            <!--<div class="list" ng-controller="inModalCtrl">-->
+          <div class="list">
           <label class="item item-input">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" ng-model="input.filterUser" placeholder="Search">
@@ -126,10 +126,12 @@
         <ion-item>
 
     <div class="item item-thumbnail-left" ng-repeat="story in stories | filter:input.filterUser">
-      <img ng-src="http://www.follo.in/webprofileimages/ASY.jpg">
+      <!--<img ng-src="http://www.follo.in/webprofileimages/ASY.jpg">-->
+      <img ng-src="https://lh3.googleusercontent.com/_d54j8d5ycmef4ldqkFbnfSXoqrBnvB9yIr8-yMszd-8fNa8UIsJAviNnhY4Vy0ugQ=w300">
+      
       <span class="story-title">{{story.id}}</span><br>
       <span class="story-title">{{story.un}}</span><br>
-       <button class="button button-icon ion-compose" ng-click="modal.show(story)"></button>
+       <button class="button button-icon ion-compose" ng-click="modal.show(story)">open in modal</button>
        
       
     </div>

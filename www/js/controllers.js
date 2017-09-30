@@ -156,12 +156,12 @@ app.controller('inModalCtrl', function($scope, $ionicModal) {
     { name: 'flop Calhoun' },
     { name: 'Lamarr the Headcrab' },
   ];
-
-  
   $ionicModal.fromTemplateUrl('snippets/index_modal.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
+
+  
 
 });
