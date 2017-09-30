@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="starter">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -33,7 +33,7 @@
     <script src="js/app.js"></script>
      <script src="js/controllers.js"></script>
   </head>
-  <body ng-app="starter">
+  <body>
 
  <ion-side-menus>
       <ion-pane ion-side-menu-content>
@@ -67,6 +67,28 @@
     </ion-side-menus>
 
 
+<script id="chat.html" type="text/ng-template">
+ <ion-view title="Chat">
+
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
+        </ion-nav-buttons> 
+        
+        <ion-tabs class="tabs-icon-top tabs-positive">
+          <ion-tab title="admin" icon="ion-home" href="#/acw/admin">
+            <ion-nav-view name="c-a-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab title="super" icon="ion-gear-a" href="#/acw/super" >
+            <ion-nav-view name="c-s-tab"></ion-nav-view>
+          </ion-tab>
+
+        </ion-tabs>
+
+      </ion-view>
+</script>
+
+
+
 
       <script id="notice.html" type="text/ng-template">
       <ion-view title="Home">
@@ -88,15 +110,49 @@
     </script>
 
         <script id="general.html" type="text/ng-template">
-      <ion-view title="General">
+      <ion-view title="General Notifications">
         <ion-nav-buttons side="left">
           <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
-        </ion-nav-buttons>        
-        <ion-content padding="true">
-          <h1 style="text-align: center;">General Page</h1>
+        </ion-nav-buttons>
+
+        <ion-content>
+       
+            <div class="list" ng-controller="inModalCtrl">
+   
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" ng-model="input.filterUser" placeholder="Search">
+          </label>
+        <ion-item>
+
+    <div class="item item-thumbnail-left" ng-repeat="story in stories | filter:input.filterUser">
+      <img ng-src="http://www.follo.in/webprofileimages/ASY.jpg">
+      <span class="story-title">{{story.id}}</span><br>
+      <span class="story-title">{{story.un}}</span><br>
+       <button class="button button-icon ion-compose" ng-click="modal.show(story)"></button>
+       
+      
+    </div>
+  </div>
+    <ion-infinite-scroll
+    on-infinite="loadOlderStories()"
+    icon="ion-loading-c"
+    distance="1%">
+  </ion-infinite-scroll>
+   </ion-item>     
         </ion-content>
+
       </ion-view>
     </script>    
+
+
+  
+       
+      </ion-content>
+    </ion-view>
+  </script>  
+
+
      
     <script id="personal.html" type="text/ng-template">
       <ion-view title="Personal">

@@ -100,6 +100,14 @@ app.controller('ModalCtrl', function($scope, $ionicModal) {
   $scope.contacts = [
     { name: 'Gordon Freeman' },
     { name: 'Barney Calhoun' },
+    { name: 'gautham Freeman' },
+    { name: 'ram Calhoun' },
+    { name: 'rahim Freeman' },
+    { name: 'robert Calhoun' },
+    { name: 'sniper Freeman' },
+    { name: 'spyder Calhoun' },
+    { name: 'flip Freeman' },
+    { name: 'flop Calhoun' },
     { name: 'Lamarr the Headcrab' },
   ];
   $ionicModal.fromTemplateUrl('snippets/chat_admin_modal.html', {
@@ -133,3 +141,27 @@ app.controller('SuperModalCtrl', function($scope, $ionicModal) {
 
 
 
+
+app.controller('inModalCtrl', function($scope, $ionicModal) {
+  $scope.contacts = [
+    { name: 'Gordon Freeman' },
+    { name: 'Barney Calhoun' },
+    { name: 'gautham Freeman' },
+    { name: 'ram Calhoun' },
+    { name: 'rahim Freeman' },
+    { name: 'robert Calhoun' },
+    { name: 'sniper Freeman' },
+    { name: 'spyder Calhoun' },
+    { name: 'flip Freeman' },
+    { name: 'flop Calhoun' },
+    { name: 'Lamarr the Headcrab' },
+  ];
+
+  
+  $ionicModal.fromTemplateUrl('snippets/index_modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+});

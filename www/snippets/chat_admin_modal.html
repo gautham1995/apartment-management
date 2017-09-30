@@ -5,6 +5,15 @@
         </ion-header-bar>
         <ion-content class="padding">
           <div class="list">
+
+<div class="item item-thumbnail-left" ng-repeat="story in contacts">
+      <img ng-src="http://www.follo.in/webprofileimages/ASY.jpg">
+      <span class="story-title">{{story.name}}</span><br>
+     
+    </div>
+
+
+
             <label class="item item-input">
               <span class="input-label">First Name</span>
               <input ng-model="newUser.firstName" type="text">

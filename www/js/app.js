@@ -50,11 +50,13 @@ if(sessionStorage.getItem('loggedin_status')){
 }
 }
 })
+
  .state('tabxs.general', {
       url: '/general',
       views: {
         'notice-g-tab': {
-          templateUrl: 'general.html',
+          controller: 'RedditCtrl',
+          templateUrl: 'general.html'
         }
       }
     })  
@@ -66,7 +68,6 @@ if(sessionStorage.getItem('loggedin_status')){
    }
   }
 })
-
 
 
 
@@ -122,27 +123,60 @@ if(sessionStorage.getItem('loggedin_status')){
     
 
     // start admin chat wall
-       .state('acw', {
-      url: '/acw',
-      controller: 'TabsCtrl',
-      templateUrl: 'tabs/chat_admin.html'
-    })
-    .state('acw.chat_admin', {
-      url: '/chat_admin',
+    //    .state('acw', {
+    //   url: '/acw',
+    //   controller: 'TabsCtrl',
+    //   templateUrl: 'tabs/chat_admin.html'
+    // })
+    // .state('acw.chat_admin', {
+    //   url: '/chat_admin',
+    //   views: {
+    //     'chat_admin-tab': {
+    //       templateUrl: 'tabs/chat_admin.html'
+    //     }
+    //   }
+    // })
+    // .state('acw.chat_super_admin', {
+    //   url: '/chat_super_admin',
+    //   views: {
+    //     'chat_super_admin-tab': {
+    //       templateUrl: 'tabs/chat_super_admin.html'
+    //     }
+    //   }
+    // })
+
+
+    .state('chats', {
+url:'/acw',
+cache:'false',
+controller: 'CredCtrl',
+templateUrl:function(){
+
+if(sessionStorage.getItem('loggedin_status')){
+ return 'chat.html';
+}else{
+  return 'login.html';
+}
+}
+})
+
+ .state('chats.admin', {
+      url: '/admin',
       views: {
-        'chat_admin-tab': {
+        'c-a-tab': {
+          //controller: 'RedditCtrl',
           templateUrl: 'tabs/chat_admin.html'
         }
       }
-    })
-    .state('acw.chat_super_admin', {
-      url: '/chat_super_admin',
+    })  
+    .state('chats.super', {
+      url: '/super',
       views: {
-        'chat_super_admin-tab': {
+        'c-s-tab': {
           templateUrl: 'tabs/chat_super_admin.html'
-        }
-      }
-    })
+   }
+  }
+})
 
     // finish admin chat wall
 
@@ -151,3 +185,31 @@ if(sessionStorage.getItem('loggedin_status')){
  
   $urlRouterProvider.otherwise('/tab');
 });
+
+
+
+app.controller('RedditCtrl',function($http,$location,$scope){
+
+ // $scope.input = {};
+  $scope.stories = [];
+  $scope.page = 1;
+  $scope.loadOlderStories = function(){
+    if($scope.stories.length > 0){
+      $scope.page += 1 ;
+    }
+    $http.get('http://localhost/pagination/jsondata.php/?page='+$scope.page)
+    //$http.get("https://www.reddit.com/r/Android/new/.json")
+      .success(function(response){
+        angular.forEach(response.data.children,function(child){
+          $scope.stories.push(child.data);
+          console.log($scope.stories);
+        });
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+  }
+
+});
+
+
+
+
