@@ -11,7 +11,7 @@ app.controller('AppCtrl', function($scope,$ionicModal,$timeout,$ionicPopup,$http
       sessionStorage.removeItem('loggedin_status');
         sessionStorage.removeItem('loggedin_id');
         sessionStorage.removeItem('loggedin_user');
-        $scope.raja = "kaja babu";
+        $scope.raja = "kaja";
         // $ionicHistory.nextViewOptions({
         //     disableAnimate: true,
         //     disableBack: true,
