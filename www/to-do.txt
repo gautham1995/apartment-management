@@ -1,0 +1,1 @@
+* animations sliding right to left or vice versa for all pages

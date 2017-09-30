@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+     <script src="js/controllers.js"></script>
+  </head>
+  <body ng-app="starter">
+
+ <ion-side-menus>
+      <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-positive nav-title-slide-ios7">
+          <ion-nav-back-button class="button-icon">
+            <span class="icon ion-ios7-arrow-left"></span>
+            </ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+      </ion-pane>
+ 
+      <ion-side-menu side="left">
+        <ion-header-bar class="bar bar-header bar-dark"><span class="title">
+          Aparts 
+        </span></ion-header-bar>
+        <ion-content has-header="true">
+          <ion-list>
+            <div class="item item-divider">Candy Bars</div>
+            <ion-item href="#/" menu-close>Notice Board</ion-item>
+            <ion-item href="#/hcc" menu-close>Home Care Center</ion-item>
+            <ion-item href="#/acw" menu-close>Admin Chat Wall</ion-item>
+            <ion-item href="#/contacts" menu-close>Contacts</ion-item>
+            <ion-item href="#/rulebook" menu-close>Rule Book</ion-item>
+            <ion-item href="#/gatekeeper" menu-close>Gate Keeper</ion-item>
+            <ion-item href="#/visitors" menu-close>Visiters List</ion-item>
+            <ion-item href="#/profile" menu-close>Profile</ion-item>
+            <ion-item href="#/help" menu-close>Help?</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+
+
+
+      <script id="notice.html" type="text/ng-template">
+      <ion-view title="Home">
+
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
+        </ion-nav-buttons> 
+        
+        <ion-tabs class="tabs-icon-top tabs-positive">
+          <ion-tab title="General" icon="ion-home" href="#/tab/general">
+            <ion-nav-view name="notice-g-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab title="Personal" icon="ion-gear-a" href="#/tab/personal" >
+            <ion-nav-view name="notice-p-tab"></ion-nav-view>
+          </ion-tab>
+        </ion-tabs>
+
+      </ion-view>
+    </script>
+
+        <script id="general.html" type="text/ng-template">
+      <ion-view title="General">
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
+        </ion-nav-buttons>        
+        <ion-content padding="true">
+          <h1 style="text-align: center;">General Page</h1>
+        </ion-content>
+      </ion-view>
+    </script>    
+     
+    <script id="personal.html" type="text/ng-template">
+      <ion-view title="Personal">
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()"></button>
+        </ion-nav-buttons>         
+        <ion-content padding="true">
+          <h1 style="text-align: center;">Personal Page</h1>
+        </ion-content>
+      </ion-view>
+    </script>
+
+
+<script id="login.html" type="text/ng-template">
+<ion-view title="Login">
+  <ion-content padding="true">
+<form ng-submit="doLogin()">
+
+  <label class="item item-input">
+    <span class="input-label">Username</span>
+    <input type="text" ng-model="loginData.username">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Password</span>
+    <input type="password" ng-model="loginData.password">
+  </label>
+  <label class="item">
+      <button class="button button-block button-energized" type="submit">login</button>    
+  </label>
+
+</form>
+</ion-content>
+</ion-view>
+</script>
+
+
+
+
+
+
+   
+  </body>
+</html>
